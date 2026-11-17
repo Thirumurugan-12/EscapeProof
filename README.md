@@ -8,7 +8,7 @@ A full-screen browser escape room with realistic workshop artwork and an operato
 
 ## Run locally
 
-Requires Node.js 24.11.1 or later and npm. 
+Requires Node.js 24.11.1 or later and npm.
 
 ```bash
 npm ci
