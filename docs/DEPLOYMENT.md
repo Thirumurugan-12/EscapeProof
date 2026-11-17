@@ -21,3 +21,11 @@ Only existing free Railway credits are authorized. No paid subscription or billi
 The standalone demo handler can serve the handcrafted room independently of Railway. It uses an encrypted 24-hour progress cookie and the private `DEMO_SESSION_SECRET` variable. It explicitly describes workshop generation and verification as local. The fallback does not claim live Kane verification.
 
 Hosted verification uses a 300-second Kane timeout so browser execution and evidence sealing can finish. Both `/app/.testmuai` (project recordings) and `/home/node/.testmuai` (profile/session data) point into the persistent volume and are writable by `node`.
+
+## Hosted verification record — 17 November 2026
+
+Meta Muse generated revision `a5d05f89-e53a-46b1-b5d8-9d18d247b7f1` on the hosted backend. Kane job `2ac6d280-af59-44ab-b173-bf5de10a86c5` passed the clue and intended-solution checks with process exit code 0 for each, then publication succeeded. A fresh unauthenticated player received that exact published, verified revision.
+
+The earlier infrastructure failure remains in the private log history: the escape itself completed, but a recording-folder permission error and the worker deadline prevented a clean result. That run did not permit publication or trigger puzzle repair. After fixing the workspace mount and deadline, both checks were rerun together in a fresh job.
+
+The deployment also passed operator-authentication, same-origin mutation, live SSE-through-Vercel, independent player escape and persistence-through-redeployment checks. Railway was confirmed on a trial with no usage subscription.
