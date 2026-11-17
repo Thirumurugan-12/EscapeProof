@@ -4,7 +4,7 @@ The public website is https://escapeproof.vercel.app.
 
 ## Architecture
 
-Vercel serves the React application. The complete workshop needs the Railway Docker service, which contains Fastify, SQLite, Kane CLI 0.10.4 and Chrome. A single replica owns the persistent `/app/data` volume, including database, evidence and refreshed Kane credentials. Do not add replicas to this SQLite deployment.
+Vercel serves the React application. The complete workshop needs the Railway Docker service, which contains Fastify, SQLite, Kane CLI 0.10.4 and Chrome. A single replica owns the persistent `/app/data` volume, including database, evidence, Kane workspace recordings and refreshed Kane credentials. Do not add replicas to this SQLite deployment.
 
 `Dockerfile.railway` starts as root only to prepare volume permissions, then runs the application and Chrome as the `node` user. The Chrome wrapper disables its sandbox inside the hosting container and avoids the small shared-memory filesystem. Operator access remains protected by `OPERATOR_TOKEN`, signed secure cookies and origin checks.
 
@@ -19,3 +19,5 @@ Only existing free Railway credits are authorized. No paid subscription or billi
 ## Standalone fallback
 
 The standalone demo handler can serve the handcrafted room independently of Railway. It uses an encrypted 24-hour progress cookie and the private `DEMO_SESSION_SECRET` variable. It explicitly describes workshop generation and verification as local. The fallback does not claim live Kane verification.
+
+Hosted verification uses a 300-second Kane timeout so browser execution and evidence sealing can finish. Both `/app/.testmuai` (project recordings) and `/home/node/.testmuai` (profile/session data) point into the persistent volume and are writable by `node`.
