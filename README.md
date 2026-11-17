@@ -121,8 +121,8 @@ See [demo script](docs/DEMO.md), [submission checklist](docs/SUBMISSION.md), and
 
 Official references: [hackathon](https://www.kaneclihack.sh/), [Kane agent output](https://www.testmuai.com/docs/kane-cli-agent-mode), [Kane installation](https://www.testmuai.com/docs/kane-cli-installation), [Meta quickstart](https://dev.meta.ai/docs/quickstart), [Meta structured output](https://dev.meta.ai/docs/structured-output).
 
-## Vercel playable demo
+## Hosted app
 
-The Vercel deployment serves the original handcrafted room with a stateless Node.js play API. Puzzle answers remain on the server; an encrypted, authenticated, HTTP-only cookie stores progress for 24 hours. This demo does not claim a live Kane pass. The workshop page explains the full local generation, verification, repair and publication flow.
+Play or open the protected workshop at https://escapeproof.vercel.app. Vercel serves the website and proxies `/api` to the Railway backend, where Meta Muse generation and Kane CLI verification run with persistent SQLite and evidence storage. Use your configured operator token to enter the workshop. See [deployment details](docs/DEPLOYMENT.md).
 
-Set `DEMO_SESSION_SECRET` to a random secret of at least 32 characters in Vercel before deploying. Do not prefix it with `VITE_`. `vercel.json` selects Vite, `dist`, and the public demo UI. No Muse API key, operator token, local database or Kane credentials are needed or uploaded. To run the full workshop, follow the local setup above.
+The standalone handcrafted demo API remains available as a fallback implementation, with authenticated encryption for progress cookies and private server-side answers. To use it without Railway, set `DEMO_SESSION_SECRET`, build with `VITE_PUBLIC_DEMO=true`, and route `/api/:path*` to `/api/demo?route=:path*`.
