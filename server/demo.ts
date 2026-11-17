@@ -35,11 +35,12 @@ export function createDemoHandler(secret: string) {
   }
   return async function handle(request: Request): Promise<Response> {
     const url = new URL(request.url);
+    const pathname = url.searchParams.has('route') ? `/api/${url.searchParams.get('route')}` : url.pathname;
     const headers = new Headers({ 'Cache-Control': 'private, no-store', 'Content-Type': 'application/json', 'X-Content-Type-Options': 'nosniff' });
     const json = (data: unknown, status = 200) => new Response(JSON.stringify(data), { status, headers });
-    if (url.pathname === '/api/health' && request.method === 'GET') return json({ ok: true, mode: 'playable-demo', workshop: 'local' });
-    if (!['/api/play', '/api/play/start', '/api/play/action'].includes(url.pathname)) return json({ error: 'The generation and Kane verification workshop runs locally. See the project repository for setup.' }, 404);
-    const expectedMethod = url.pathname === '/api/play' ? 'GET' : 'POST';
+    if (pathname === '/api/health' && request.method === 'GET') return json({ ok: true, mode: 'playable-demo', workshop: 'local' });
+    if (!['/api/play', '/api/play/start', '/api/play/action'].includes(pathname)) return json({ error: 'The generation and Kane verification workshop runs locally. See the project repository for setup.' }, 404);
+    const expectedMethod = pathname === '/api/play' ? 'GET' : 'POST';
     if (request.method !== expectedMethod) { headers.set('Allow', expectedMethod); return json({ error: 'Method not allowed.' }, 405); }
     if (request.method === 'POST') {
       if (request.headers.get('sec-fetch-site') === 'cross-site' || (request.headers.get('origin') && request.headers.get('origin') !== url.origin)) return json({ error: 'Cross-site actions are not allowed.' }, 403);
@@ -47,7 +48,7 @@ export function createDemoHandler(secret: string) {
     }
     const cookie = (request.headers.get('cookie') || '').split(';').map(v => v.trim()).find(v => v.startsWith(`${cookieName}=`))?.slice(cookieName.length + 1);
     let state = cookie ? open(cookie) : null, message = '';
-    if (url.pathname === '/api/play/action') {
+    if (pathname === '/api/play/action') {
       if (!state?.started) return json({ error: 'Begin a new expedition to play.' }, 409);
       try {
         const body = await request.text();
@@ -55,7 +56,7 @@ export function createDemoHandler(secret: string) {
         const result = act(handcrafted, state, actionSchema.parse(JSON.parse(body)));
         state = result.state; message = result.message;
       } catch { return json({ error: 'Invalid game action.' }, 400); }
-    } else if (url.pathname === '/api/play/start') {
+    } else if (pathname === '/api/play/start') {
       state = initialState(); state.started = true;
     } else { state ||= initialState(); }
     headers.set('Set-Cookie', `${cookieName}=${seal(state!)}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${lifetime}`);

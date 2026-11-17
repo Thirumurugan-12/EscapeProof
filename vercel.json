@@ -3,5 +3,15 @@
   "framework": "vite",
   "buildCommand": "VITE_PUBLIC_DEMO=true npm run build",
   "outputDirectory": "dist",
-  "functions": { "api/[...path].ts": { "maxDuration": 10 } }
+  "functions": {
+    "api/demo.ts": {
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/demo?route=:path*"
+    }
+  ]
 }
