@@ -1,0 +1,21 @@
+services:
+  app:
+    build: .
+    init: true
+    ports:
+      - "127.0.0.1:3001:3001"
+    env_file: .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3001
+      DATA_DIR: /app/data
+      APP_ORIGIN: http://127.0.0.1:3001
+      KANE_BIN: kane-cli
+    volumes:
+      - escapeproof-data:/app/data
+      - kane-profile:/home/node/.testmuai
+    shm_size: 1gb
+    restart: unless-stopped
+volumes:
+  escapeproof-data:
+  kane-profile:

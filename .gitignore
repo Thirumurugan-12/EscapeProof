@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.tools/
+.env
+data/
+.testmuai/
+test-results/
+*.log
+
+# Private local state and generated presentation artifacts
+.env.*
+!.env.example
+.hyperframes/
+videos/
+docs/SUBMISSION-DRAFT.md
+docs/screenshots/submission-*.jpg
+PLAN.md
+*.pem
+*.key

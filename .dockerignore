@@ -1,0 +1,15 @@
+.git
+.tools
+node_modules
+dist
+data
+.env
+.testmuai
+test-results
+docs/screenshots
+
+.hyperframes
+videos
+PLAN.md
+docs/SUBMISSION-DRAFT.md
+.env.*

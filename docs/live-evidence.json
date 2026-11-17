@@ -1,0 +1,51 @@
+{
+  "description": "Genuine local acceptance evidence, not unit-test fixtures. Raw packs are retained locally and ignored by Git.",
+  "kaneVersion": "0.10.4",
+  "modelProvider": "Meta Muse",
+  "model": "muse-spark-1.3",
+  "generatedRevision": "43760f9f-b7dd-49dc-a1a0-e7812ae27108",
+  "faultyRevision": "4ae7fa2d-c11d-4e0a-ae8a-1f4810946b37",
+  "jobId": "1a2e545f-4ec5-4a9e-8de6-595cd300055b",
+  "repairedRevision": "aefe6da6-daf5-45ec-92ed-251914ae4fe3",
+  "repairs": 1,
+  "checks": [
+    {
+      "revision": "4ae7fa2d-c11d-4e0a-ae8a-1f4810946b37",
+      "kind": "clues",
+      "status": "failed",
+      "outcome": "product-failure"
+    },
+    {
+      "revision": "aefe6da6-daf5-45ec-92ed-251914ae4fe3",
+      "kind": "clues",
+      "status": "passed",
+      "outcome": "passed"
+    },
+    {
+      "revision": "aefe6da6-daf5-45ec-92ed-251914ae4fe3",
+      "kind": "solution",
+      "status": "passed",
+      "outcome": "passed"
+    }
+  ],
+  "publishedLocally": true,
+  "freshPublicPlayer": "passed",
+  "evidence": [
+    {
+      "path": "data/evidence/1a2e545f-4ec5-4a9e-8de6-595cd300055b/attempt-0-clues/48458ad9-27bc-4971-96df-8e85a184ad00.evidence",
+      "sha256": "55dbe1b0d336253db4643359a4217829d3c015d698362d2ccc4fb38900f0796a"
+    },
+    {
+      "path": "data/evidence/1a2e545f-4ec5-4a9e-8de6-595cd300055b/attempt-1-clues/2c0cd85a-dbb1-4295-b193-60b0271b4606.evidence",
+      "sha256": "60e85fe9c795c3fea7d0e6a19bd11e652a6686ade0f2f17d06290b34390658ae"
+    },
+    {
+      "path": "data/evidence/1a2e545f-4ec5-4a9e-8de6-595cd300055b/attempt-1-solution/dba02d6c-31ca-4a45-977d-cbae04e6e3fd.evidence",
+      "sha256": "449f30ac601cfdfb94c3975057ecc9de896e2bd6f5e925eee69827563681e961"
+    },
+    {
+      "path": "data/public-player-evidence/1a2e545f-4ec5-4a9e-8de6-595cd300055b/fc2e5f63-b27d-4745-bb13-33b5bec1069a.evidence",
+      "sha256": "ff5bce7596210c205c8efee3bf480839a10b8cbbe09b554ab7b460eb7b2e0953"
+    }
+  ]
+}
