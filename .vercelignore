@@ -1,0 +1,16 @@
+.git/
+.tools/
+node_modules/
+data/
+videos/
+.hyperframes/
+.testmuai/
+test-results/
+docs/screenshots/submission-*.jpg
+docs/SUBMISSION-DRAFT.md
+PLAN.md
+.env
+.env.*
+*.log
+*.pem
+*.key

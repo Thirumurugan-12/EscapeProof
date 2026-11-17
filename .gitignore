@@ -17,3 +17,6 @@ docs/screenshots/submission-*.jpg
 PLAN.md
 *.pem
 *.key
+
+# Local Vercel linkage and environment cache
+.vercel/
